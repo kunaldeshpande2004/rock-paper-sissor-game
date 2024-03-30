@@ -11,18 +11,25 @@ compscr.innerHTML = "0";
 userscr.innerHTML = "0";
 
 function result() {
-    if (i % (i+2) === 0) {
+    // Generate a random number for the computer's choice
+    const compChoice = Math.floor(Math.random() * 3); // 0 for rock, 1 for paper, 2 for scissors
+
+    // Generate a random number for the user's choice
+    const userChoice = Math.floor(Math.random() * 3); // 0 for rock, 1 for paper, 2 for scissors
+
+    // Compare user's choice with computer's choice to determine the winner
+    if (userChoice === compChoice) {
         msgupdate.innerHTML = "DRAW";
-    } else if (i % (i+3) === 1 || i % (i+6) === 2) {
+    } else if ((userChoice + 1) % 3 === compChoice) {
         msgupdate.innerHTML = "COMP WINS";
-        compscr.innerHTML = `${++compscr.innerHTML}`;
+        compscr.innerHTML = `${parseInt(compscr.innerHTML) + 1}`; // Increment computer's score
     } else {
         msgupdate.innerHTML = "YOU WIN";
-        userscr.innerHTML = `${++userscr.innerHTML}`;
+        userscr.innerHTML = `${parseInt(userscr.innerHTML) + 1}`; // Increment user's score
     }
-    i++;
-}
 
+    i++; // Increment the round counter
+}
 rockbtn.addEventListener("click", result);
 paperbtn.addEventListener("click", result);
 sissorbtn.addEventListener("click", result);
